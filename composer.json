@@ -1,0 +1,35 @@
+{
+    "name": "jagaad/module_4_project",
+    "description": "REST API to handle requests for a blog post",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Module4Project\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ljubomir Stevancevic",
+            "email": "ljubomir.stevancevic@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.6",
+        "nyholm/psr7": "^1.5",
+        "nyholm/psr7-server": "^1.0",
+        "guzzlehttp/psr7": "^2",
+        "laminas/laminas-diactoros": "^2.24",
+        "php-di/slim-bridge": "^3.3",
+        "ramsey/uuid": "^4.7",
+      "ext-pdo": "*",
+        "vlucas/phpdotenv": "^5.5",
+        "cocur/slugify": "^4.3",
+      "ext-fileinfo": "*",
+        "zircote/swagger-php": "^3.2"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.9",
+        "squizlabs/php_codesniffer": "^3.7"
+    }
+}
