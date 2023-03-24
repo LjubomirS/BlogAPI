@@ -29,7 +29,7 @@ class Post
         private string $author,
         #[ORM\Column(name: 'posted_at', type: 'datetime_immutable')]
         private \DateTimeImmutable $postedAt,
-        #[ORM\ManyToMany(targetEntity: Category::class,  inversedBy:'posts')]
+        #[ORM\ManyToMany(targetEntity: Category::class, inversedBy:'posts')]
         private Collection|array $categories = new ArrayCollection(),
     ) {
     }
@@ -77,13 +77,13 @@ class Post
     public function toArray(): array
     {
         return [
-            'id'=>$this->postId(),
-            'title'=>$this->title(),
-            'slug'=>$this->slug(),
-            'content'=>$this->content(),
-            'thumbnail'=>$this->thumbnail(),
-            'author'=>$this->author(),
-            'posted_at'=>$this->postedAt()
+            'id' => $this->postId(),
+            'title' => $this->title(),
+            'slug' => $this->slug(),
+            'content' => $this->content(),
+            'thumbnail' => $this->thumbnail(),
+            'author' => $this->author(),
+            'posted_at' => $this->postedAt()
         ];
     }
 
@@ -101,5 +101,4 @@ class Post
 
         return $postData;
     }
-
 }

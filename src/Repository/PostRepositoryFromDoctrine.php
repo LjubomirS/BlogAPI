@@ -59,7 +59,7 @@ class PostRepositoryFromDoctrine implements PostRepository
 
     public function update(mixed $propertiesToUpdate, mixed $args): void
     {
-        $post = $this->entityManager->getRepository(Post::class)->findOneBy(['postId'=>$args]);
+        $post = $this->entityManager->getRepository(Post::class)->findOneBy(['postId' => $args]);
 
         $reflection = new \ReflectionObject($post);
 

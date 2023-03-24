@@ -13,21 +13,18 @@ use Ramsey\Uuid\Uuid;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Cocur\Slugify\Slugify;
-use PDO;
 use Module5Project\Repository\CategoryRepository;
 
 class CreatePostController
 {
     private PostRepository $postRepository;
     private PostsCategoriesRepository $postsCategoriesRepository;
-    private PDO $pdo;
     private CategoryRepository $categoryRepository;
 
     public function __construct(Container $container)
     {
         $this->postRepository = $container->get('post-repository');
         $this->postsCategoriesRepository = $container->get('posts_categories-repository');
-        $this->pdo = $container->get('db');
         $this->categoryRepository = $container->get('category-repository');
     }
 
@@ -43,7 +40,7 @@ class CreatePostController
                 throw new \Exception('Missing required fields.');
             }
 
-            if($this->postRepository->findByTitle($inputs)){
+            if ($this->postRepository->findByTitle($inputs)) {
                 throw new \Exception('Post with that title already exists.', 400);
             }
 
@@ -81,7 +78,6 @@ class CreatePostController
             $displayPostData = $post->displayPost($post);
 
             return new JsonResponse($displayPostData);
-
         } catch (\Exception $e) {
             return new JsonResponse(['error' => $e->getMessage()], 400);
         }

@@ -35,7 +35,7 @@ class CategoryRepositoryFromDoctrine implements CategoryRepository
 
     public function update(mixed $inputs, mixed $args): void
     {
-        $category = $this->entityManager->getRepository(Category::class)->findOneBy(['categoryId'=>$args]);
+        $category = $this->entityManager->getRepository(Category::class)->findOneBy(['categoryId' => $args]);
 
         $reflection = new \ReflectionObject($category);
 

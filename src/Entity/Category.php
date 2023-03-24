@@ -49,9 +49,9 @@ class Category
     public function toArray(): array
     {
         return [
-            'id'=>$this->categoryId()->toString(),
-            'name'=>$this->name(),
-            'description'=>$this->description()
+            'id' => $this->categoryId()->toString(),
+            'name' => $this->name(),
+            'description' => $this->description()
         ];
     }
 }

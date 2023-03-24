@@ -37,8 +37,8 @@ class UpdatePostController
             $filePath = 'http://localhost:8888/uploads/' . $thumbnail->handle();
 
             $propertiesToUpdate = [
-                'content'=>$inputs['content'],
-                'thumbnail'=>$filePath
+                'content' => $inputs['content'],
+                'thumbnail' => $filePath
             ];
 
             $this->postRepository->update($propertiesToUpdate, $args);

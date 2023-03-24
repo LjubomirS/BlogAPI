@@ -9,6 +9,7 @@ interface PostRepository
     public function store(Post $post): void;
 
     public function read(mixed $args): ?Post;
+    public function findByTitle($inputs): bool;
     /**
      * @return Post[]
      */
