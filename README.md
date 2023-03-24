@@ -1,6 +1,6 @@
-# BlogAPI
+# BlogAPI - Doctrine
 
-This is a REST API to handle requests for a blog post, including the ability to create, read, update, and delete posts and post categories. The API documentation is also provided.
+This is a REST API to handle requests for a blog post, including the ability to create, read, update, and delete posts and post categories. 
 
 ## Getting started
 
@@ -10,15 +10,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 To use this REST API, you need to have the following installed:
 
-- [ ] PHP version 7.3 or higher
+- [ ] PHP version 8.1 or higher
 - [ ] MySQL or any other supported database management system
 - [ ] Composer dependency manager
 
 ### Installation
 
 1. Clone or download the source code for the REST API from the GitHub repository.
-2. Run composer install in the project directory to install the required dependencies.
-3. Create a new MySQL database and import the db.sql file to create the necessary tables.
+2. Run ```composer install``` in the project directory to install the required dependencies.
+3. Create a new MySQL database and run command ```php vendor/bin/doctrine orm:schema-tool:create``` to create the necessary tables.
 4. Copy the .env.example file to .env and modify the settings to match your database configuration.
 
 ## Usage
@@ -44,9 +44,6 @@ This will start a local development server at http://localhost:8000. You can use
 * PUT /v1/categories/update/{id}: ***Updates an existing category.***
 * DELETE /v1/categories/delete/{id}: ***Deletes an existing category.***
 
-### API Documentation
-The API documentation is generated using the Swagger PHP library and is available at http://localhost:8000/api-docs/. The documentation includes details on the available endpoints, parameters, and responses.
-
 ### Database Table Structure
 The tables in the database contain the following fields:
 
@@ -69,7 +66,7 @@ The tables in the database contain the following fields:
 * ***category_id:*** The unique identifier for the category.
 
 ## Conclusion
-This REST API provides the necessary functionality for a blog post, including creating, reading, updating, and deleting posts and post categories. With the provided database table structure and API documentation, it is easy to integrate this API with a front-end web application.
+This REST API provides the necessary functionality for a blog post, including creating, reading, updating, and deleting posts and post categories. With the provided database table structure, it is easy to integrate this API with a front-end web application.
 
 
 

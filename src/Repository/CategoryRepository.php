@@ -1,16 +1,14 @@
 <?php
 
-namespace Module4Project\Repository;
+namespace Module5Project\Repository;
 
-use Module4Project\Entity\Category;
+use Module5Project\Entity\Category;
 
 interface CategoryRepository
 {
     public function store(Category $category): void;
-    /**
-     * @return Category[]
-     */
-    public function read(mixed $args): array;
+
+    public function read(mixed $args): ?Category;
     /**
      * @return Category[]
      */

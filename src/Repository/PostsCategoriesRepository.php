@@ -1,8 +1,8 @@
 <?php
 
-namespace Module4Project\Repository;
+namespace Module5Project\Repository;
 
-use Module4Project\Entity\Post;
+use Module5Project\Entity\Post;
 
 interface PostsCategoriesRepository
 {

@@ -1,40 +1,15 @@
 <?php
 
-namespace Module4Project\Controller\PostControllers;
+namespace Module5Project\Controller\PostControllers;
 
 use DI\Container;
 use Laminas\Diactoros\Response\JsonResponse;
-use Module4Project\Repository\PostRepository;
+use Module5Project\Repository\PostRepository;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
 class DeletePostController
 {
-    /**
-     * @OA\Delete(
-     *     path="/v1/posts/delete/{slug}",
-     *     description="Deletes a post based on the {slug} paramether added to the route path.",
-     *     tags={"Posts"},
-     *     @OA\Parameter(
-     *         description="Slug of the post to delete",
-     *         in="path",
-     *         name="slug",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string"
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response="200",
-     *         description="Returns confirmation that post is deleted"
-     *     ),
-     *     @OA\Response(
-     *         response="404",
-     *         description="Post not found"
-     *     )
-     * )
-     */
-
     private PostRepository $postRepository;
 
     public function __construct(Container $container)

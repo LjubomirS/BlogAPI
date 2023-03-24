@@ -1,44 +1,17 @@
 <?php
 
-namespace Module4Project\Controller\CategoryControllers;
+namespace Module5Project\Controller\CategoryControllers;
 
 use DI\Container;
 use Laminas\Diactoros\Response\JsonResponse;
-use Module4Project\Entity\Category;
-use Module4Project\Repository\CategoryRepository;
+use Module5Project\Entity\Category;
+use Module5Project\Repository\CategoryRepository;
 use Ramsey\Uuid\Uuid;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
 class CreateCategoryController
 {
-    /**
-     * @OA\Post(
-     *     path="/v1/categories/create",
-     *     description="Creates a new category",
-     *     tags={"Categories"},
-     *     @OA\RequestBody(
-     *         description="Category to add.",
-     *         required=true,
-     *         @OA\MediaType(
-     *             mediaType="aplication/json",
-     *             @OA\Schema(
-     *                  @OA\Property(property="name", type="string"),
-     *                  @OA\Property(property="description", type="string")
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response="200",
-     *         description="Returns all the properties of a created category"
-     *     ),
-     *     @OA\Response(
-     *         response="400",
-     *         description="Bad Request"
-     *     )
-     * )
-     */
-
     private CategoryRepository $categoryRepository;
 
     public function __construct(Container $container)

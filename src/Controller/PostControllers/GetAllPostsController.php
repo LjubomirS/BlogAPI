@@ -1,28 +1,15 @@
 <?php
 
-namespace Module4Project\Controller\PostControllers;
+namespace Module5Project\Controller\PostControllers;
 
 use DI\Container;
 use Laminas\Diactoros\Response\JsonResponse;
-use Module4Project\Repository\PostRepository;
+use Module5Project\Repository\PostRepository;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
-use OpenApi\Annotations as OA;
 
 class GetAllPostsController
 {
-    /**
-     * @OA\Get(
-     *     path="/v1/posts",
-     *     description="All the posts in the app",
-     *     tags={"Posts"},
-     *     @OA\Response(
-     *         response="200",
-     *         description="Returns the list of all the posts"
-     *     )
-     * )
-     */
-
     private PostRepository $postRepository;
 
     public function __construct(Container $container)

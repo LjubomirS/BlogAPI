@@ -1,6 +1,6 @@
 <?php
 
-namespace Module4Project;
+namespace Module5Project;
 
 use OpenApi\Annotations as OA;
 

@@ -1,23 +1,36 @@
 <?php
 
-namespace Module4Project\Entity;
+namespace Module5Project\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
 
+#[ORM\Entity, ORM\Table(name: 'posts')]
 class Post
 {
-    /**
-     * @param Category[] $categories
-     */
     public function __construct(
-        private UuidInterface $postId,
+        #[ORM\Id]
+        #[ORM\GeneratedValue(strategy: "CUSTOM")]
+        #[ORM\Column(name: 'id', type: 'uuid', unique:true)]
+        #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+        private UuidInterface|string $postId,
+        #[ORM\Column(type: 'string')]
         private string $title,
+        #[ORM\Column(type: 'string')]
         private string $slug,
+        #[ORM\Column(type: 'string')]
         private string $content,
+        #[ORM\Column(type: 'string')]
         private string $thumbnail,
+        #[ORM\Column(type: 'string')]
         private string $author,
-        private string $posted_at,
-        private array $categories,
+        #[ORM\Column(name: 'posted_at', type: 'datetime_immutable')]
+        private \DateTimeImmutable $postedAt,
+        #[ORM\ManyToMany(targetEntity: Category::class,  inversedBy:'posts')]
+        private Collection|array $categories = new ArrayCollection(),
     ) {
     }
 
@@ -51,16 +64,42 @@ class Post
         return $this->author;
     }
 
-    public function postedAt(): string
+    public function postedAt(): \DateTimeImmutable
     {
-        return $this->posted_at;
+        return $this->postedAt;
     }
 
-    /**
-     * @return Category[]
-     */
-    public function categories(): array
+    public function categories(): Collection|array
     {
         return $this->categories;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id'=>$this->postId(),
+            'title'=>$this->title(),
+            'slug'=>$this->slug(),
+            'content'=>$this->content(),
+            'thumbnail'=>$this->thumbnail(),
+            'author'=>$this->author(),
+            'posted_at'=>$this->postedAt()
+        ];
+    }
+
+    public function displayPost(Post $post): array
+    {
+        $postData = $post->toArray();
+
+        foreach ($post->categories() as $category) {
+            $postData['categories'][] = [
+                'id' => $category->categoryId(),
+                'name' => $category->name(),
+                'description' => $category->description()
+            ];
+        }
+
+        return $postData;
+    }
+
 }

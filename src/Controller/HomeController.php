@@ -1,6 +1,6 @@
 <?php
 
-namespace Module4Project\Controller;
+namespace Module5Project\Controller;
 
 use Laminas\Diactoros\Response\JsonResponse;
 use Slim\Psr7\Request;

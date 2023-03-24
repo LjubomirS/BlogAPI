@@ -1,3 +1,9 @@
 .idea
-/vendor/
+vendor
 .env
+
+public/uploads/*
+!public/uploads/.gitkeep
+
+var/doctrine/*
+!var/doctrine/.gitkeep

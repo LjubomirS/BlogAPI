@@ -1,16 +1,14 @@
 <?php
 
-namespace Module4Project\Repository;
+namespace Module5Project\Repository;
 
-use Module4Project\Entity\Post;
+use Module5Project\Entity\Post;
 
 interface PostRepository
 {
     public function store(Post $post): void;
-    /**
-     * @return Post[]
-     */
-    public function read(mixed $args): array;
+
+    public function read(mixed $args): ?Post;
     /**
      * @return Post[]
      */

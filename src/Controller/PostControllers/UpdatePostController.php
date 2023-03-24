@@ -1,55 +1,16 @@
 <?php
 
-namespace Module4Project\Controller\PostControllers;
+namespace Module5Project\Controller\PostControllers;
 
 use DI\Container;
 use Laminas\Diactoros\Response\JsonResponse;
-use Module4Project\Repository\PostRepository;
+use Module5Project\Controller\FileController;
+use Module5Project\Repository\PostRepository;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
 class UpdatePostController
 {
-    /**
-     * @OA\Put(
-     *     path="/v1/posts/update/{slug}",
-     *     description="Update contant and thumbnail of the post",
-     *     tags={"Posts"},
-     *     @OA\Parameter(
-     *         description="Slug of the post to fetch",
-     *         in="path",
-     *         name="slug",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string"
-     *         )
-     *     ),
-     *     @OA\RequestBody(
-     *         description="Update post",
-     *         required=true,
-     *         @OA\MediaType(
-     *             mediaType="aplication/json",
-     *             @OA\Schema(
-     *                  @OA\Property(property="content", type="string"),
-     *                  @OA\Property(property="thumbnail", type="string")
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response="200",
-     *         description="Returns all the properties of the updated post"
-     *     ),
-     *     @OA\Response(
-     *         response="400",
-     *         description="Bad Request"
-     *     ),
-     *     @OA\Response(
-     *         response="404",
-     *         description="Category not found"
-     *     )
-     * )
-     */
-
     private PostRepository $postRepository;
 
     public function __construct(Container $container)
@@ -72,11 +33,19 @@ class UpdatePostController
                 throw new \Exception('Missing required fields.', 400);
             }
 
-            $this->postRepository->update($inputs, $args);
+            $thumbnail = new FileController($inputs['thumbnail']);
+            $filePath = 'http://localhost:8888/uploads/' . $thumbnail->handle();
 
-            $data = $this->postRepository->read($args);
+            $propertiesToUpdate = [
+                'content'=>$inputs['content'],
+                'thumbnail'=>$filePath
+            ];
 
-            return new JsonResponse($data);
+            $this->postRepository->update($propertiesToUpdate, $args);
+
+            $post = $this->postRepository->read($args);
+
+            return new JsonResponse($post->toArray());
         } catch (\Exception $e) {
             $statusCode = $e->getCode() ?: 400;
             return new JsonResponse(['error' => $e->getMessage()], $statusCode);
