@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS module_4_project;
+CREATE DATABASE IF NOT EXISTS blog_api_db;
 
-USE module_4_project;
+USE blog_api_db;
 
 CREATE TABLE IF NOT EXISTS posts (
     post_id VARCHAR(100) NOT NULL,

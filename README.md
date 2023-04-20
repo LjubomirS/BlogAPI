@@ -10,23 +10,29 @@ These instructions will get you a copy of the project up and running on your loc
 
 To use this REST API, you need to have the following installed:
 
-- [ ] PHP version 7.3 or higher
+- [ ] PHP version 8.0 or higher
 - [ ] MySQL or any other supported database management system
 - [ ] Composer dependency manager
 
 ### Installation
 
 1. Clone or download the source code for the REST API from the GitHub repository.
-2. Run composer install in the project directory to install the required dependencies.
-3. Create a new MySQL database and import the db.sql file to create the necessary tables.
-4. Copy the .env.example file to .env and modify the settings to match your database configuration.
+2. Run ```composer install``` in the project directory to install the required dependencies.
+3. Create a new MySQL database and name ti "blog_api_db".
+4. Copy the .env.example file to .env file and modify the settings to match your database configuration.
+    ```
+    DB_HOST= localhost
+    DB_NAME= blog_api_db
+    DB_USER= <my_app_user>
+    DB_PASS= <my_app_password>
+    ```
+5. Run ```php database/create-db.php``` in the project directory to create the tables for db
 
 ## Usage
 
-```
-php -S localhost:8000 -t public
-```
-This will start a local development server at http://localhost:8000. You can use any REST API client, such as Postman or Insomnia, to interact with the API.
+Run ```php -S localhost:8000 -t public``` in the project directory
+This will start a local development server at http://localhost:8000. 
+You can use any REST API client, such as Postman or Insomnia, to interact with the API.
 
 ### The available endpoints are:
 
@@ -45,7 +51,8 @@ This will start a local development server at http://localhost:8000. You can use
 * DELETE /v1/categories/delete/{id}: ***Deletes an existing category.***
 
 ### API Documentation
-The API documentation is generated using the Swagger PHP library and is available at http://localhost:8000/api-docs/. The documentation includes details on the available endpoints, parameters, and responses.
+The API documentation is generated using the Swagger PHP library and is available at http://localhost:8000/api-docs/. 
+The documentation includes details on the available endpoints, parameters, and responses.
 
 ### Database Table Structure
 The tables in the database contain the following fields:
@@ -68,8 +75,27 @@ The tables in the database contain the following fields:
 * ***post_id:*** The unique identifier for the post.
 * ***category_id:*** The unique identifier for the category.
 
+### Base64 Encoded Image 
+This is a picture that you can use for thumbnails:
+* iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAADMElEQVR4nOzVwQnAIBQFQYXff81RUkQCOyDj1YOPnbXWPmeTRef+/3O/OyBjzh3CD95BfqICMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMO0TAAD//2Anhf4QtqobAAAAAElFTkSuQmCC
+
+Example:
+```
+{
+	"title": "title",
+	"content": "content",
+	"thumbnail": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAADMElEQVR4nOzVwQnAIBQFQYXff81RUkQCOyDj1YOPnbXWPmeTRef+/3O/OyBjzh3CD95BfqICMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMK0CMO0TAAD//2Anhf4QtqobAAAAAElFTkSuQmCC",
+	"author": "author",
+	"categories": [ 
+		{"id": "ab7387d3-fc0f-4950-875f-9ef799aeb0b9"}
+	]
+}
+```
+
 ## Conclusion
-This REST API provides the necessary functionality for a blog post, including creating, reading, updating, and deleting posts and post categories. With the provided database table structure and API documentation, it is easy to integrate this API with a front-end web application.
+This REST API provides the necessary functionality for a blog post. 
+It includes creating, reading, updating, and deleting posts and post categories. 
+With the provided database table structure and API documentation, it is easy to integrate this API with a front-end web application.
 
 
 
